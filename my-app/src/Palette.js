@@ -4,24 +4,28 @@ import "./Palette.css";
 import Navbar from "./Navbar";
 
 class Palette extends Component {
-  state = { scale: 500 };
+  state = { scale: 500, format: "hex" };
 
   handleScaleChange = (scale) => {
-    console.log(scale);
     this.setState({ scale });
+  };
+
+  handleFormatChange = (val) => {
+    this.setState({ format: val });
   };
 
   render() {
     const { palette } = this.props;
-    const { scale } = this.state;
+    const { scale, format } = this.state;
     const colorBoxes = palette.colors[scale].map((box) => (
-      <ColorBox key={box.hex} background={box.hex} name={box.name} />
+      <ColorBox key={box.hex} background={box[format]} name={box.name} />
     ));
     return (
       <div className="Palette">
         <Navbar
+          handleFormatChange={this.handleFormatChange}
           handleScaleChange={this.handleScaleChange}
-          scale={this.state.scale}
+          scale={scale}
         />
         {/* nav bar goes here */}
         <div className="Palette-colors">{colorBoxes}</div>

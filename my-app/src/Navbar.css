@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: relative;
+}
+
+.Navbar a {
+  text-decoration: none;
 }
 
 .Navbar h3 {
@@ -36,4 +41,8 @@
 
 .rc-slider-rail {
   height: 7px;
+}
+
+div.MuiInputBase-root.MuiInput-root.MuiInput-underline.select {
+  margin-left: 45%;
 }

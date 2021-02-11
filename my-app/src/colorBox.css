@@ -63,7 +63,7 @@ span {
   position: absolute;
   z-index: 10;
   opacity: 1;
-  transform: scale(8);
+  transform: scale(10);
 }
 
 .copy-content {
