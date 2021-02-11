@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ColorBox from "./colorBox";
 import "./Palette.css";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 class Palette extends Component {
   state = { scale: 500, format: "hex" };
@@ -27,9 +28,8 @@ class Palette extends Component {
           handleScaleChange={this.handleScaleChange}
           scale={scale}
         />
-        {/* nav bar goes here */}
         <div className="Palette-colors">{colorBoxes}</div>
-        {/* footer goes here */}
+        <Footer name={palette.paletteName} />
       </div>
     );
   }

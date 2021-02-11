@@ -1,0 +1,14 @@
+.footer {
+  height: 59px;
+  background: #edeef2;
+}
+.footer p {
+  margin: 0;
+  line-height: 59px;
+  float: right;
+  font-weight: bold;
+  margin-right: 10px;
+  padding-bottom: 5px;
+  letter-spacing: 0.1rem;
+  color: #303542;
+}
