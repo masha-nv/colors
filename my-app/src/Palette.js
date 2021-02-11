@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import ColorBox from "./colorBox";
 import "./Palette.css";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+import Navbar from "./Navbar";
 
 class Palette extends Component {
   state = { scale: 500 };
@@ -20,12 +19,9 @@ class Palette extends Component {
     ));
     return (
       <div className="Palette">
-        <Slider
-          min={100}
-          max={900}
-          step={100}
-          defaultValue={scale}
-          onAfterChange={this.handleScaleChange}
+        <Navbar
+          handleScaleChange={this.handleScaleChange}
+          scale={this.state.scale}
         />
         {/* nav bar goes here */}
         <div className="Palette-colors">{colorBoxes}</div>

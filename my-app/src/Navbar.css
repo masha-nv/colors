@@ -1,0 +1,39 @@
+.Navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Navbar h3 {
+  background-color: #edeef2;
+  margin: 0;
+  height: 3rem;
+  line-height: 100%;
+  line-height: 2.5rem;
+  color: #303542;
+  padding: 5px 10px;
+  letter-spacing: 0.1rem;
+}
+
+.Navbar p {
+  padding: 0 10px 0 10px;
+  font-weight: normal;
+}
+
+.slider {
+  width: 30%;
+}
+
+.rc-slider-track {
+  background-color: inherit;
+}
+.rc-slider-handle {
+  background: #32a623;
+  width: 20px;
+  height: 20px;
+  margin-top: -6.5px;
+}
+
+.rc-slider-rail {
+  height: 7px;
+}
