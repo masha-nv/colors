@@ -1,5 +1,4 @@
 import React from "react";
-import "./MiniPalette.css";
 import { withStyles } from "@material-ui/styles";
 
 const styles = {
@@ -12,10 +11,23 @@ const styles = {
   container: {
     display: "grid",
     gridTemplateColumns: "repeat(5, 1fr)",
+    gridGap: "1px",
     height: "200px",
   },
   miniBox: {
     height: "100%",
+    "&:nth-child(1)": {
+      borderRadius: "12px 0 0 0",
+    },
+    "&:nth-child(5)": {
+      borderRadius: "0 12px 0 0",
+    },
+    "&:nth-child(16)": {
+      borderRadius: "0 0 0 12px",
+    },
+    "&:nth-child(20)": {
+      borderRadius: "0 0 12px 0",
+    },
   },
   paletteName: {
     textAlign: "left",

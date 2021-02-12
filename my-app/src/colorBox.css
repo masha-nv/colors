@@ -11,15 +11,16 @@ button.copy-button {
   top: 50%;
   left: 50%;
   border: none;
-  width: 50px;
+  width: 54px;
   height: 32px;
   margin-top: -16px;
-  margin-left: -25px;
+  margin-left: -27px;
   background-color: rgba(255, 255, 255, 0.4);
   color: #fff;
   opacity: 0;
   outline: none;
   text-transform: uppercase;
+  letter-spacing: 0.1rem;
 }
 
 .ColorBox:hover .copy-button {

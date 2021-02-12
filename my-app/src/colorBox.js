@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import "./colorBox.css";
+import { Link, withRouter } from "react-router-dom";
 
 class ColorBox extends Component {
   state = { copied: false };
@@ -10,6 +11,14 @@ class ColorBox extends Component {
       this.setState({ copied: false });
     }, 1500);
   };
+
+  handleSeeMore = (e) => {
+    e.stopPropagation();
+    this.props.history.push(
+      `/palette/${this.props.match.params.id}/${this.props.name}`
+    );
+  };
+
   render() {
     const { background, name } = this.props;
     const { copied } = this.state;
@@ -31,11 +40,13 @@ class ColorBox extends Component {
               <button className="copy-button">Copy</button>
             </CopyToClipboard>
           </div>
-          <span className="see-more">More</span>
+          <span onClick={this.handleSeeMore} className="see-more">
+            More
+          </span>
         </div>
       </div>
     );
   }
 }
 
-export default ColorBox;
+export default withRouter(ColorBox);
