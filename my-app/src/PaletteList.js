@@ -1,19 +1,25 @@
 import React, { Component } from "react";
 import "./PaletteList.css";
 import { Link } from "react-router-dom";
+import MiniPalette from "./MiniPalette";
 
 class PaletteList extends Component {
   state = {};
   render() {
     const { palettes } = this.props;
     return (
-      <ul>
-        {palettes.map((palette) => (
-          <Link to={"/palette/" + palette.id}>
-            <li>{palette.paletteName}</li>
-          </Link>
-        ))}
-      </ul>
+      <div className="spot">
+        <h1>React Colors</h1>
+        <div className="PaletteList">
+          {palettes.map((palette) => (
+            <Link key={palette.id} to={"/palette/" + palette.id}>
+              <div>
+                <MiniPalette palette={palette} />
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
     );
   }
 }
