@@ -8,7 +8,7 @@ class PaletteList extends Component {
   render() {
     const { palettes } = this.props;
     return (
-      <div className="spot">
+      <div className="wrapper">
         <h1>React Colors</h1>
         <div className="PaletteList">
           {palettes.map((palette) => (
