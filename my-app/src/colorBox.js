@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import "./colorBox.css";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import chroma from "chroma-js";
 
@@ -23,6 +22,31 @@ const styles = {
     },
     "&:hover button": {
       opacity: 1,
+    },
+    "& button": {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      border: "none",
+      height: "32px",
+      marginTop: "-16px",
+      backgroundColor: "rgba(255, 255, 255, 0.4)",
+      outline: "none",
+      textTransform: "uppercase",
+      letterSpacing: "0.1rem",
+      cursor: "pointer",
+      color: (props) =>
+        chroma(props.background).luminance() >= 0.3
+          ? chroma("black").alpha(0.9)
+          : "white",
+    },
+    "& span": {
+      position: "absolute",
+      bottom: 0,
+      padding: "10px",
+      fontSize: "12px",
+      textTransform: "uppercase",
+      letterSpacing: "1px",
     },
   },
   colorName: {
@@ -48,12 +72,22 @@ const styles = {
     marginBottom: "0",
     transform: "scale(0)",
     opacity: "0",
-  },
-  dynamicFontColor: {
-    color: (props) =>
-      chroma(props.background).luminance() >= 0.3
-        ? chroma("black").alpha(0.9)
-        : "white",
+    "& h1": {
+      fontSize: "3rem",
+      letterSpacing: "1rem",
+      fontWeight: "400",
+      textShadow: "1px 2px grey",
+      backgroundColor: "rgba(255, 255, 255, 0.4)",
+      marginBottom: "0",
+      padding: "10px",
+      borderRadius: "10px",
+      textTransform: "uppercase",
+    },
+    "& p": {
+      fontSize: "1.2rem",
+      fontWeight: "100",
+      letterSpacing: "0.1rem",
+    },
   },
   seeMore: {
     position: "absolute",
@@ -70,32 +104,36 @@ const styles = {
         ? chroma("black").alpha(0.9)
         : "white",
   },
-  button: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    border: "none",
-    width: "54px",
-    height: "32px",
-    marginTop: "-16px",
-    marginLeft: "-27px",
-    backgroundColor: "rgba(255, 255, 255, 0.4)",
-    outline: "none",
-    textTransform: "uppercase",
-    letterSpacing: "0.1rem",
-    cursor: "pointer",
-  },
   copyBtn: {
-    color: (props) =>
-      chroma(props.background).luminance() >= 0.3
-        ? chroma("black").alpha(0.9)
-        : "white",
     opacity: 0,
     transition: "all .5s",
+    width: "54px",
+    marginLeft: "-27px",
   },
   goBackBtn: {
     width: "100px",
     marginLeft: "-50px",
+  },
+  copyOverlay: {
+    width: "100%",
+    height: "100%",
+    zIndex: "0",
+    opacity: "0",
+    transition: "transform 0.6s ease-in-out",
+    transform: "scale(0.1)",
+  },
+  showOverlay: {
+    position: "absolute",
+    zIndex: "10",
+    opacity: "1",
+    transform: "scale(10)",
+  },
+  showCopyContent: {
+    opacity: "1",
+    zIndex: "11",
+    transform: "scale(1)",
+    transition: "all 0.3s ease-in-out",
+    transitionDelay: "0.6s",
   },
 };
 
@@ -122,19 +160,22 @@ class ColorBox extends Component {
   render() {
     const { background, name, moreLink, classes } = this.props;
     const { copied } = this.state;
-    const light = chroma(background).luminance() >= 0.5;
     return (
       <div className={classes.ColorBox} style={{ background }}>
         <div
-          className={`copy-overlay  ${copied && "show"}`}
+          className={`${classes.copyOverlay}  ${copied && classes.showOverlay}`}
           style={{ background }}
         />
-        <div className={`copy-content ${copied && "show-copy-content"}`}>
-          <h1 className={classes.dynamicFontColor}>copied</h1>
-          <p className={classes.dynamicFontColor}>{background}</p>
+        <div
+          className={`${classes.copyContent} ${
+            copied && classes.showCopyContent
+          }`}
+        >
+          <h1>copied</h1>
+          <p>{background}</p>
         </div>
-        <div className="box-content">
-          <div className="copy-container">
+        <div>
+          <div>
             <span className={classes.colorName}>{name}</span>
             {name && (
               <CopyToClipboard text={background} onCopy={this.handleCopy}>
