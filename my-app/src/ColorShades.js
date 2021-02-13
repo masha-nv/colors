@@ -16,17 +16,18 @@ class ColorShades extends Component {
   };
 
   handleFormatChange = (format) => {
-    this.setState({ format });
+    this.setState({ format: format });
   };
 
   render() {
     const { shades, classes } = this.props;
+    const { format } = this.state;
     const colorBoxes = shades.map((shade) => (
       <ColorBox
         showingFullPalette={false}
         key={shade.hex}
         name={shade.name}
-        background={shade[this.state.format]}
+        background={shade[format]}
       />
     ));
 

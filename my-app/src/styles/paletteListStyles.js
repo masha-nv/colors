@@ -1,6 +1,16 @@
 export default {
   root: {
     height: "100vh",
+    "& h1": {
+      color: "#2a313a",
+      marginLeft: "10%",
+      letterSpacing: "0.2rem",
+      paddingLeft: "15px",
+    },
+    "& a": {
+      textDecoration: "none",
+      color: "#303542",
+    },
   },
   paletteList: {
     display: "grid",
@@ -16,14 +26,15 @@ export default {
     gridGap: "2px",
     margin: "0 auto",
   },
-  anchor: {
-    textDecoration: "none",
-    color: "#303542",
-  },
-  title: {
-    color: "#2a313a",
-    marginLeft: "10%",
-    letterSpacing: "0.2rem",
-    paddingLeft: "15px",
+  header: {
+    display: "flex",
+    justifyContent: "space-between",
+    "& a": {
+      color: "#2a313a",
+      marginRight: "11.8%",
+      letterSpacing: "0.1rem",
+      paddingLeft: "15px",
+      alignSelf: "center",
+    },
   },
 };

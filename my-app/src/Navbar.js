@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import "./Navbar.css";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import { withStyles } from "@material-ui/styles";
+import styles from "./styles/navbarStyles";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   state = { format: "hex", open: false };
@@ -20,30 +22,29 @@ class Navbar extends Component {
   };
   render() {
     const { format, open } = this.state;
+    const { classes } = this.props;
     return (
       <div>
-        <nav className="Navbar">
-          <a href="/">
+        <nav className={classes.root}>
+          <Link to="/">
             <h3>colorpicker</h3>
-          </a>
+          </Link>
           <p>Level: {this.props.scale}</p>
           <Slider
-            className="slider"
+            className={classes.slider}
             min={100}
             max={900}
             step={100}
             defaultValue={this.props.scale}
             onAfterChange={this.props.handleScaleChange}
           />
-          <Select
-            className="select"
-            value={format}
-            onChange={this.handleChange}
-          >
-            <MenuItem value="hex">HEX - #FFFFFF</MenuItem>
-            <MenuItem value="rgb">RGB - 255,255,255</MenuItem>
-            <MenuItem value="rgba">RGBA - 255,255,255,1.0</MenuItem>
-          </Select>
+          <div className={classes.selectContainer}>
+            <Select value={format} onChange={this.handleChange}>
+              <MenuItem value="hex">HEX - #FFFFFF</MenuItem>
+              <MenuItem value="rgb">RGB - 255,255,255</MenuItem>
+              <MenuItem value="rgba">RGBA - 255,255,255,1.0</MenuItem>
+            </Select>
+          </div>
         </nav>
         <Snackbar
           anchorOrigin={{
@@ -73,4 +74,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withStyles(styles)(Navbar);

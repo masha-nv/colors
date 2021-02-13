@@ -19,6 +19,7 @@ export default {
     "&:hover button": {
       opacity: 1,
     },
+
     "& button": {
       position: "absolute",
       top: "50%",
@@ -32,9 +33,7 @@ export default {
       letterSpacing: "0.1rem",
       cursor: "pointer",
       color: (props) =>
-        chroma(props.background).luminance() >= 0.3
-          ? chroma("black").alpha(0.9)
-          : "white",
+        chroma(props.background).luminance() >= 0.3 ? "black" : "white",
     },
     "& span": {
       position: "absolute",
@@ -47,9 +46,7 @@ export default {
   },
   colorName: {
     color: (props) =>
-      chroma(props.background).luminance() >= 0.3
-        ? chroma("black").alpha(0.9)
-        : "white",
+      chroma(props.background).luminance() >= 0.3 ? "black" : "white",
   },
   copyContent: {
     position: "fixed",
@@ -62,9 +59,7 @@ export default {
     marginTop: "-250px",
     marginLeft: "-400px",
     color: (props) =>
-      chroma(props.background).luminance() >= 0.3
-        ? chroma("black").alpha(0.9)
-        : "white",
+      chroma(props.background).luminance() >= 0.3 ? "black" : "white",
     marginBottom: "0",
     transform: "scale(0)",
     opacity: "0",
@@ -96,9 +91,7 @@ export default {
     textTransform: "uppercase",
     cursor: "pointer",
     color: (props) =>
-      chroma(props.background).luminance() >= 0.3
-        ? chroma("black").alpha(0.9)
-        : "white",
+      chroma(props.background).luminance() >= 0.3 ? "black" : "white",
   },
   copyBtn: {
     opacity: 0,
