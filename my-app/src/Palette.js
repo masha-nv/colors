@@ -23,6 +23,7 @@ class Palette extends Component {
     const { scale, format } = this.state;
     const colorBoxes = palette.colors[scale].map((box) => (
       <ColorBox
+        showingFullPalette={true}
         key={box.hex}
         background={box[format]}
         name={box.name}

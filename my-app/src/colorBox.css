@@ -1,10 +1,10 @@
-.ColorBox {
+/* .ColorBox {
   width: 20%;
   height: 25%;
   display: inline-block;
   position: relative;
   margin-top: -5px;
-}
+} */
 
 @media (min-width: 1201px) {
   .ShadesPalette .ColorBox {

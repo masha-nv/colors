@@ -8,10 +8,94 @@ import chroma from "chroma-js";
 const styles = {
   ColorBox: {
     width: "20%",
-    height: " 25%",
+    height: "25%",
     display: "inline-block",
     position: "relative",
     marginTop: "-4px",
+    ["@media (min-width: 1201px)"]: {
+      height: (props) => (props.showingFullPalette ? "25%" : "50%"),
+    },
+    ["@media (max-width:1200px)"]: {
+      width: "50%",
+    },
+    ["@media (max-width:667px)"]: {
+      width: "100%",
+    },
+    "&:hover button": {
+      opacity: 1,
+    },
+  },
+  colorName: {
+    color: (props) =>
+      chroma(props.background).luminance() >= 0.3
+        ? chroma("black").alpha(0.9)
+        : "white",
+  },
+  copyContent: {
+    position: "fixed",
+    zIndex: "-10",
+    width: "800px",
+    height: "300px",
+    textAlign: "center",
+    top: " 50%",
+    left: " 50%",
+    marginTop: "-250px",
+    marginLeft: "-400px",
+    color: (props) =>
+      chroma(props.background).luminance() >= 0.3
+        ? chroma("black").alpha(0.9)
+        : "white",
+    marginBottom: "0",
+    transform: "scale(0)",
+    opacity: "0",
+  },
+  dynamicFontColor: {
+    color: (props) =>
+      chroma(props.background).luminance() >= 0.3
+        ? chroma("black").alpha(0.9)
+        : "white",
+  },
+  seeMore: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+    padding: "10px",
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    border: "none",
+    outline: "none",
+    textTransform: "uppercase",
+    cursor: "pointer",
+    color: (props) =>
+      chroma(props.background).luminance() >= 0.3
+        ? chroma("black").alpha(0.9)
+        : "white",
+  },
+  button: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    border: "none",
+    width: "54px",
+    height: "32px",
+    marginTop: "-16px",
+    marginLeft: "-27px",
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    outline: "none",
+    textTransform: "uppercase",
+    letterSpacing: "0.1rem",
+    cursor: "pointer",
+  },
+  copyBtn: {
+    color: (props) =>
+      chroma(props.background).luminance() >= 0.3
+        ? chroma("black").alpha(0.9)
+        : "white",
+    opacity: 0,
+    transition: "all .5s",
+  },
+  goBackBtn: {
+    width: "100px",
+    marginLeft: "-50px",
   },
 };
 
@@ -36,42 +120,35 @@ class ColorBox extends Component {
   };
 
   render() {
-    const { background, name, moreLink } = this.props;
+    const { background, name, moreLink, classes } = this.props;
     const { copied } = this.state;
     const light = chroma(background).luminance() >= 0.5;
     return (
-      <div className="ColorBox" style={{ background }}>
+      <div className={classes.ColorBox} style={{ background }}>
         <div
           className={`copy-overlay  ${copied && "show"}`}
           style={{ background }}
         />
         <div className={`copy-content ${copied && "show-copy-content"}`}>
-          <h1 className={`copied ${light ? "light" : "dark"}`}>copied</h1>
-          <p className={`copied-bg ${light ? "light" : "dark"}`}>
-            {background}
-          </p>
+          <h1 className={classes.dynamicFontColor}>copied</h1>
+          <p className={classes.dynamicFontColor}>{background}</p>
         </div>
         <div className="box-content">
           <div className="copy-container">
-            <span className={`${light ? "light" : "dark"}`}>{name}</span>
+            <span className={classes.colorName}>{name}</span>
             {name && (
               <CopyToClipboard text={background} onCopy={this.handleCopy}>
-                <button className={`copy-button ${light ? "light" : "dark"}`}>
-                  Copy
-                </button>
+                <button className={classes.copyBtn}>Copy</button>
               </CopyToClipboard>
             )}
             {!name && (
-              <button onClick={this.handleGoBack} className="goBack-button">
+              <button onClick={this.handleGoBack} className={classes.goBackBtn}>
                 go back
               </button>
             )}
           </div>
           {moreLink && (
-            <span
-              onClick={this.handleSeeMore}
-              className={`see-more ${light ? "light" : "dark"}`}
-            >
+            <span onClick={this.handleSeeMore} className={classes.seeMore}>
               More
             </span>
           )}

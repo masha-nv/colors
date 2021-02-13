@@ -33,6 +33,7 @@ class ColorShades extends Component {
     const { shades, classes } = this.props;
     const colorBoxes = shades.map((shade) => (
       <ColorBox
+        showingFullPalette={false}
         key={shade.hex}
         name={shade.name}
         background={shade[this.state.format]}

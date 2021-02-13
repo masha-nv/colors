@@ -34,8 +34,7 @@ function generatePalette(starterPalette) {
 
 function generateScale(hexColor, numberOfSteps) {
   return chroma
-    .scale(["white", hexColor, chroma(hexColor).darken(1.4)])
-    .mode("lab")
+    .scale(["white", hexColor, chroma(hexColor).darken(1.3)])
     .colors(numberOfSteps);
 }
 
