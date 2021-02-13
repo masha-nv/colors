@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import ColorBox from "./colorBox";
-import "./Palette.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { withStyles } from "@material-ui/styles";
-
-const styles = {};
+import styles from "./styles/paletteStyles";
 
 class Palette extends Component {
   state = { scale: 500, format: "hex" };
@@ -19,7 +17,7 @@ class Palette extends Component {
   };
 
   render() {
-    const { palette } = this.props;
+    const { palette, classes } = this.props;
     const { scale, format } = this.state;
     const colorBoxes = palette.colors[scale].map((box) => (
       <ColorBox
@@ -31,13 +29,13 @@ class Palette extends Component {
       />
     ));
     return (
-      <div className="Palette">
+      <div className={classes.root}>
         <Navbar
           handleFormatChange={this.handleFormatChange}
           handleScaleChange={this.handleScaleChange}
           scale={scale}
         />
-        <div className="Palette-colors">{colorBoxes}</div>
+        <div className={classes.colorBoxes}>{colorBoxes}</div>
         <Footer name={palette.paletteName} />
       </div>
     );

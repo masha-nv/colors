@@ -3,17 +3,7 @@ import ColorShadesNav from "./ColorShadesNav";
 import ColorBox from "./colorBox";
 import { withStyles } from "@material-ui/styles";
 import Footer from "./Footer";
-
-const styles = {
-  goBack: {
-    position: "absolute",
-    top: "20%",
-    zIndex: 10,
-  },
-  palette: {
-    height: "100vh",
-  },
-};
+import styles from "./styles/colorShadesStyles";
 
 class ColorShades extends Component {
   state = { format: "hex", copied: false, copiedColor: "" };
@@ -46,8 +36,8 @@ class ColorShades extends Component {
           shades={shades}
           handleFormatChange={this.handleFormatChange}
         />
-        <div className="ShadesPalette Palette">
-          <div className="Palette-colors">{colorBoxes}</div>
+        <div className={classes.root}>
+          <div className={classes.colorBoxes}>{colorBoxes}</div>
         </div>
         <Footer name={shades[0].id.toUpperCase()} />
       </div>
