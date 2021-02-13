@@ -1,56 +1,20 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/styles";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import ColorShadesNav from "./ColorShadesNav";
-import "./ColorShades.css";
+import ColorBox from "./colorBox";
+import { withStyles } from "@material-ui/styles";
+import Footer from "./Footer";
 
 const styles = {
-  root: {
-    display: "grid",
-    gridTemplateColumns: "repeat(5, 1fr)",
-    ["@media(max-width: 950px)"]: {
-      gridTemplateColumns: "repeat(2, 1fr)",
-    },
-    ["@media(max-width: 750px)"]: {
-      gridTemplateColumns: "repeat(1, 1fr)",
-    },
-    height: "80vh",
-  },
-  box: {
-    height: "100%",
-    position: "relative",
-  },
-  copy: {
+  goBack: {
     position: "absolute",
-    top: "50%",
-    left: "50%",
-    height: "50px",
-    width: "90px",
-    marginTop: "-25px",
-    marginLeft: "-45px",
-    lineHeight: "100%",
-    textAlign: "center",
-    textTransform: "uppercase",
-    backgroundColor: "rgba(255, 255, 255, .3)",
-    border: "none",
-    outline: "none",
-    color: "#fff",
-    cursor: "pointer",
-    letterSpacing: ".1rem",
-    opacity: 0,
-    "&:hover": {
-      opacity: 1,
-    },
+    top: "20%",
+    zIndex: 10,
   },
-  overlay: {
-    display: "absolute",
-  },
-  showOverlay: {
-    width: "100vw",
+  palette: {
     height: "100vh",
-    transition: "all 0.3s ease-in-out",
   },
 };
+
 class ColorShades extends Component {
   state = { format: "hex", copied: false, copiedColor: "" };
 
@@ -66,40 +30,26 @@ class ColorShades extends Component {
   };
 
   render() {
-    const { classes, shades } = this.props;
-    const { copiedColor, copied, format } = this.state;
+    const { shades, classes } = this.props;
+    const colorBoxes = shades.map((shade) => (
+      <ColorBox
+        key={shade.hex}
+        name={shade.name}
+        background={shade[this.state.format]}
+      />
+    ));
 
     return (
-      <React.Fragment>
+      <div>
         <ColorShadesNav
           shades={shades}
           handleFormatChange={this.handleFormatChange}
         />
-        <div className={classes.root}>
-          <div
-            style={{ backgroundColor: copiedColor }}
-            className={classes.overlay && copied ? classes.showOverlay : null}
-          ></div>
-          {shades.map((shade) => (
-            <div className={classes.boxContainer}>
-              <div
-                className={classes.box}
-                key={shade.hex}
-                style={{ background: shade.hex }}
-              >
-                <CopyToClipboard
-                  key={shade.hex}
-                  text={shade[format]}
-                  onCopy={() => this.handleCopy(shade.hex)}
-                >
-                  <button className={classes.copy}>copy</button>
-                </CopyToClipboard>
-                <span>{shade.name}</span>
-              </div>
-            </div>
-          ))}
+        <div className="ShadesPalette Palette">
+          <div className="Palette-colors">{colorBoxes}</div>
         </div>
-      </React.Fragment>
+        <Footer name={shades[0].id.toUpperCase()} />
+      </div>
     );
   }
 }

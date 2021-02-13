@@ -6,7 +6,6 @@ import { withStyles } from "@material-ui/styles";
 const styles = {
   root: {
     height: "100vh",
-    backgroundColor: "blue",
   },
   paletteList: {
     display: "grid",
@@ -27,9 +26,10 @@ const styles = {
     color: "#303542",
   },
   title: {
-    color: "#fff",
+    color: "#2a313a",
     marginLeft: "10%",
     letterSpacing: "0.2rem",
+    paddingLeft: "15px",
   },
 };
 

@@ -3,10 +3,28 @@
   height: 25%;
   display: inline-block;
   position: relative;
-  margin-top: -4px;
+  margin-top: -5px;
 }
 
-button.copy-button {
+@media (min-width: 1201px) {
+  .ShadesPalette .ColorBox {
+    height: 52.2%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .ColorBox {
+    width: 50%;
+    /* height: 20%; */
+  }
+}
+@media (max-width: 667px) {
+  .ColorBox {
+    width: 100%;
+  }
+}
+
+button {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -17,16 +35,23 @@ button.copy-button {
   margin-left: -27px;
   background-color: rgba(255, 255, 255, 0.4);
   color: #fff;
-  opacity: 0;
   outline: none;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
+  cursor: pointer;
+}
+button.copy-button {
+  opacity: 0;
+}
+
+button.goBack-button {
+  width: 100px;
+  margin-left: -50px;
 }
 
 .ColorBox:hover .copy-button {
   opacity: 1;
   transition: 0.5s;
-  cursor: pointer;
 }
 
 span {
@@ -46,9 +71,16 @@ span {
   background-color: rgba(255, 255, 255, 0.4);
   border: none;
   outline: none;
-  color: #fff;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+.light {
+  color: black;
+}
+
+.dark {
+  color: #fff;
 }
 
 .copy-overlay {

@@ -1,6 +1,10 @@
 .footer {
   height: 59px;
   background: #edeef2;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  right: 2px;
 }
 .footer p {
   margin: 0;
@@ -8,7 +12,6 @@
   float: right;
   font-weight: bold;
   margin-right: 10px;
-  padding-bottom: 5px;
   letter-spacing: 0.1rem;
   color: #303542;
 }

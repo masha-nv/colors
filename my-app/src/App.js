@@ -31,7 +31,8 @@ class App extends Component {
           shades.push(shade);
       }
     }
-    return shades.splice(1);
+    shades.push({ hex: "#000000" });
+    return shades.slice(1);
   };
 
   render() {
