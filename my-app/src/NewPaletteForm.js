@@ -17,6 +17,7 @@ import DraggableColorList from "./DraggableColorList";
 import arrayMove from "array-move";
 import NewPaletteFormNav from "./NewPaletteFormNav";
 import NewPaletteDrawer from "./NewPaletteDrawer";
+import EmojiForm from "./EmojiForm";
 
 const drawerWidth = 340;
 const appBarHeight = 64;
@@ -108,11 +109,29 @@ const styles = (theme) => ({
 
 class NewPaletteForm extends Component {
   state = {
-    open: true,
+    open: false,
     color: "",
     colors: [],
     colorName: "",
     openDialog: false,
+    openEmojiForm: false,
+    paletteName: "",
+  };
+
+  handleCloseEmojiForm = () => {
+    this.setState({ openEmojiForm: false });
+  };
+
+  handleSaveEmoji = (emoji) => {
+    const newPalette = {
+      paletteName: this.state.paletteName,
+      id: this.state.paletteName.toLowerCase().replaceAll(" ", "-"),
+      emoji: emoji,
+      colors: this.state.colors,
+    };
+    seedColors.push(newPalette);
+    this.setState({ openDialog: false, openEmojiForm: false });
+    this.props.history.push("/");
   };
 
   onSortEnd = ({ oldIndex, newIndex }) => {
@@ -163,7 +182,7 @@ class NewPaletteForm extends Component {
   };
 
   handleSavePalette = () => {
-    this.setState({ openDialog: true });
+    this.setState({ openDialog: true, openEmojiForm: false });
   };
 
   handleClearPalette = () => {
@@ -172,15 +191,11 @@ class NewPaletteForm extends Component {
   };
 
   handleSave = (newPaletteName) => {
-    const newPalette = {
+    this.setState({
+      openEmojiForm: true,
       paletteName: newPaletteName,
-      id: newPaletteName.toLowerCase().replaceAll(" ", "-"),
-      emoji: ":)",
-      colors: this.state.colors,
-    };
-    seedColors.push(newPalette);
-    this.setState({ openDialog: false });
-    this.props.history.push("/");
+      openDialog: false,
+    });
   };
 
   handleClose = () => {
@@ -198,7 +213,6 @@ class NewPaletteForm extends Component {
   };
 
   handleDelete = (color) => {
-    console.log(color);
     this.setState({
       colors: [...this.state.colors.filter((el) => el.color !== color)],
     });
@@ -206,7 +220,7 @@ class NewPaletteForm extends Component {
 
   render() {
     const { classes, history } = this.props;
-    const { open, color, colors, colorName } = this.state;
+    const { open, color, colors, colorName, openEmojiForm } = this.state;
 
     return (
       <div className={classes.root}>
@@ -241,6 +255,11 @@ class NewPaletteForm extends Component {
             handleSave={this.handleSave}
             open={this.state.openDialog}
             handleClose={this.handleClose}
+          />
+          <EmojiForm
+            closeEmojiForm={this.handleCloseEmojiForm}
+            saveEmoji={this.handleSaveEmoji}
+            open={openEmojiForm}
           />
           <DraggableColorList
             distance={1}
