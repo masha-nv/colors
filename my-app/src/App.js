@@ -9,7 +9,7 @@ import ColorShades from "./ColorShades";
 import NewPaletteForm from "./NewPaletteForm";
 
 class App extends Component {
-  state = {};
+  // state = { palettes: seedColors };
 
   makePalettes = () => {
     let palettes = [];
@@ -25,7 +25,6 @@ class App extends Component {
 
   getShades = (colorName, palette) => {
     let shades = [];
-    // let palette = this.findPalette(id);
     for (let color in palette.colors) {
       for (let shade of palette.colors[color]) {
         if (shade.name.substr(0, shade.name.indexOf(" ")) === colorName)
@@ -39,7 +38,11 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/palette/new" render={() => <NewPaletteForm />} />
+        <Route
+          exact
+          path="/palette/new"
+          render={(routeProps) => <NewPaletteForm {...routeProps} />}
+        />
         <Route
           exact
           path="/"
