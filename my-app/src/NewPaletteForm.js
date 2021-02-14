@@ -1,15 +1,8 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import { ChromePicker } from "react-color";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { ValidatorForm } from "react-material-ui-form-validator";
 import chroma from "chroma-js";
 import SavePaletteForm from "./SavePaletteForm";
 import seedColors from "./seedColors";
@@ -18,94 +11,7 @@ import arrayMove from "array-move";
 import NewPaletteFormNav from "./NewPaletteFormNav";
 import NewPaletteDrawer from "./NewPaletteDrawer";
 import EmojiForm from "./EmojiForm";
-
-const drawerWidth = 340;
-const appBarHeight = 64;
-
-const styles = (theme) => ({
-  root: {
-    display: "flex",
-  },
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20,
-  },
-
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerContent: {
-    height: "90%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    "& h4": {
-      marginBottom: "30px",
-    },
-    "& button": {
-      margin: "0 4px 10px 0",
-    },
-    "& form": {
-      width: "310px",
-      "& input": {
-        width: "310px",
-      },
-      "& button": {
-        width: "100%",
-        height: "3rem",
-      },
-    },
-  },
-
-  drawerHeader: {
-    display: "flex",
-    alignItems: "center",
-    padding: "0 8px",
-    ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
-  },
-  content: {
-    flexGrow: 1,
-    height: `calc(100vh - ${appBarHeight}px )`,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(5, 1fr)",
-    height: "90vh",
-  },
-});
+import styles from "./styles/NewPaletteFormStyles";
 
 class NewPaletteForm extends Component {
   state = {
@@ -129,7 +35,11 @@ class NewPaletteForm extends Component {
       emoji: emoji,
       colors: this.state.colors,
     };
-    seedColors.push(newPalette);
+    this.props.palettes.push(newPalette);
+    window.localStorage.setItem(
+      "palettes",
+      JSON.stringify(this.props.palettes)
+    );
     this.setState({ openDialog: false, openEmojiForm: false });
     this.props.history.push("/");
   };
@@ -202,8 +112,8 @@ class NewPaletteForm extends Component {
     this.setState({ openDialog: false });
   };
   generateRandomColor = () => {
-    const randIdx = Math.floor(Math.random() * seedColors.length);
-    const randomPalette = seedColors[randIdx];
+    const randIdx = Math.floor(Math.random() * this.props.palettes.length);
+    const randomPalette = this.props.palettes[randIdx];
     const randColorIdx = Math.floor(
       Math.random() * randomPalette.colors.length
     );

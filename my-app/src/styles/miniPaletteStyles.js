@@ -4,7 +4,23 @@ export default {
     borderRadius: "12px",
     margin: "0 9px 9px 0",
     background: "white",
+    position: "relative",
+    "& svg": {
+      position: "absolute",
+      right: "0",
+      padding: "4px",
+      opacity: 0,
+      color: "#fff",
+      transition: "all .3s ease",
+    },
+    "&:hover svg": {
+      opacity: 1,
+    },
+    "& svg:hover": {
+      transform: "scale(1.2)",
+    },
   },
+
   container: {
     display: "grid",
     gridTemplateColumns: "repeat(5, 1fr)",

@@ -36,7 +36,7 @@ class Palette extends Component {
           scale={scale}
         />
         <div className={classes.colorBoxes}>{colorBoxes}</div>
-        <Footer name={palette.paletteName} />
+        <Footer name={palette.paletteName} emoji={palette.emoji} />
       </div>
     );
   }

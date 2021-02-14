@@ -9,11 +9,24 @@ import ColorShades from "./ColorShades";
 import NewPaletteForm from "./NewPaletteForm";
 
 class App extends Component {
-  // state = { palettes: seedColors };
+  savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
+  state = {
+    palettes:
+      this.savedPalettes ||
+      window.localStorage.setItem("palettes", JSON.stringify(seedColors)),
+  };
+
+  handleDeletePalette = (palette) => {
+    const updatedPalettes = this.state.palettes.filter(
+      (p) => p.paletteName !== palette.paletteName
+    );
+    window.localStorage.setItem("palettes", JSON.stringify(updatedPalettes));
+    this.setState({ palettes: updatedPalettes });
+  };
 
   makePalettes = () => {
     let palettes = [];
-    for (let palette of seedColors) {
+    for (let palette of this.state.palettes) {
       palettes.push(generatePalette(palette));
     }
     return palettes;
@@ -36,18 +49,25 @@ class App extends Component {
   };
 
   render() {
+    const { palettes } = this.state;
     return (
       <Switch>
         <Route
           exact
           path="/palette/new"
-          render={(routeProps) => <NewPaletteForm {...routeProps} />}
+          render={(routeProps) => (
+            <NewPaletteForm {...routeProps} palettes={palettes} />
+          )}
         />
         <Route
           exact
           path="/"
           render={(routeProps) => (
-            <PaletteList {...routeProps} palettes={this.makePalettes()} />
+            <PaletteList
+              {...routeProps}
+              palettes={this.makePalettes()}
+              deletePalette={this.handleDeletePalette}
+            />
           )}
         />
         <Route

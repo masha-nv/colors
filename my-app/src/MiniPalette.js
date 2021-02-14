@@ -1,10 +1,12 @@
 import React from "react";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles/miniPaletteStyles";
+import DeleteIcon from "@material-ui/icons/Delete";
 
-const MiniPalette = ({ palette, classes }) => {
+const MiniPalette = ({ palette, classes, openDeleteDialog }) => {
   return (
     <div className={classes.root}>
+      <DeleteIcon onClick={(e) => openDeleteDialog(e, palette)} />
       <div className={classes.container}>
         {palette.colors[500].map((color) => (
           <div
