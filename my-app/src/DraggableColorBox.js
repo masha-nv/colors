@@ -6,9 +6,10 @@ import { SortableElement } from "react-sortable-hoc";
 
 const styles = {
   root: {
+    display: "inline-block",
     height: "25%",
     width: "20%",
-    marginBottom: "-6px",
+    marginBottom: "0px",
     position: "relative",
     cursor: "pointer",
     "& span": {

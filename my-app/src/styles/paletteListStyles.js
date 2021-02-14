@@ -31,7 +31,7 @@ export default {
     justifyContent: "space-between",
     "& a": {
       color: "#2a313a",
-      marginRight: "11.8%",
+      marginRight: "12.2%",
       letterSpacing: "0.1rem",
       paddingLeft: "15px",
       alignSelf: "center",
