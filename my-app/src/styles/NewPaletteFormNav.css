@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+  .MuiButton-contained {
+    font-size: 9px;
+  }
+  h6 {
+    display: none;
+  }
+  .NewPaletteForm-drawerContent-7 {
+    justify-content: start !important;
+  }
+
+  .NewPaletteForm-drawerContent-7 h4 {
+    font-size: 1.4rem;
+  }
+}

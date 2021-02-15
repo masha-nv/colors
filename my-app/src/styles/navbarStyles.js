@@ -1,3 +1,5 @@
+import sizes from "./sizes";
+
 export default {
   root: {
     display: "flex",
@@ -5,6 +7,12 @@ export default {
     position: "relative",
     "& a": {
       textDecoration: "none",
+      [sizes.down("md")]: {
+        display: "none",
+      },
+    },
+    [sizes.down("md")]: {
+      flexDirection: "column",
     },
 
     "& h3": {
@@ -28,6 +36,9 @@ export default {
     "& .rc-slider-track": {
       backgroundColor: "inherit",
     },
+    [sizes.down("md")]: {
+      width: "90%",
+    },
     "& .rc-slider-handle": {
       background: "#32a623",
       width: "20px",
@@ -41,5 +52,8 @@ export default {
   selectContainer: {
     marginLeft: "auto",
     marginRight: "1rem",
+    [sizes.down("md")]: {
+      margin: "20px auto",
+    },
   },
 };

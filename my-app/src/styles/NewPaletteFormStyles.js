@@ -1,9 +1,11 @@
+import sizes from "./sizes";
 const drawerWidth = 340;
 const appBarHeight = 64;
 export default (theme) => ({
   root: {
     display: "flex",
   },
+
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
@@ -82,5 +84,9 @@ export default (theme) => ({
     display: "grid",
     gridTemplateColumns: "repeat(5, 1fr)",
     height: "90vh",
+  },
+  navButtons: {
+    marginLeft: "auto",
+    marginRight: "10px",
   },
 });

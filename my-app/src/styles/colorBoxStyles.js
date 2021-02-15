@@ -1,19 +1,21 @@
 import chroma from "chroma-js";
-
+import sizes from "./sizes";
 export default {
   ColorBox: {
     width: "20%",
-    height: "25%",
     display: "inline-block",
     position: "relative",
     marginTop: "-4px",
-    ["@media (min-width: 1201px)"]: {
+    [sizes.up("lg")]: {
       height: (props) => (props.showingFullPalette ? "25%" : "50%"),
     },
-    ["@media (max-width:1200px)"]: {
+    [sizes.down("lg")]: {
+      height: (props) => (props.showingFullPalette ? "9.5%" : "17.2%"),
       width: "50%",
+      // height: "9.5%",
     },
-    ["@media (max-width:667px)"]: {
+    [sizes.down("md")]: {
+      height: (props) => (props.showingFullPalette ? "4.74%" : "8.6%"),
       width: "100%",
     },
     "&:hover button": {
@@ -104,8 +106,6 @@ export default {
     marginLeft: "-50px",
   },
   copyOverlay: {
-    width: "100%",
-    height: "100%",
     zIndex: "0",
     opacity: "0",
     transition: "transform 0.6s ease-in-out",
@@ -116,6 +116,8 @@ export default {
     zIndex: "10",
     opacity: "1",
     transform: "scale(10)",
+    height: "100vh",
+    width: "100vw",
   },
   showCopyContent: {
     opacity: "1",

@@ -1,4 +1,12 @@
+import sizes from "./sizes";
+
 export default {
+  "@global": {
+    ".fade-exit-active": {
+      opacity: "0",
+      transition: "opacity .5s ease-in-out",
+    },
+  },
   root: {
     height: "100vh",
     "& h1": {
@@ -6,21 +14,29 @@ export default {
       marginLeft: "10%",
       letterSpacing: "0.2rem",
       paddingLeft: "15px",
+      [sizes.down("md")]: {
+        fontSize: "1rem",
+        letterSpacing: "1px",
+      },
     },
     "& a": {
       textDecoration: "none",
       color: "#303542",
+      [sizes.down("md")]: {
+        fontSize: ".8rem",
+        letterSpacing: "1px",
+        textAlign: "right",
+      },
     },
   },
   paletteList: {
     display: "grid",
-    height: "700px",
     width: "80%",
     gridTemplateColumns: "repeat(3, 1fr)",
-    ["@media (max-width: 950px)"]: {
+    [sizes.down("lg")]: {
       gridTemplateColumns: "repeat(2, 1fr)",
     },
-    ["@media (max-width: 750px)"]: {
+    [sizes.down("md")]: {
       gridTemplateColumns: "repeat(1, 1fr)",
     },
     gridGap: "2px",

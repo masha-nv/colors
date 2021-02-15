@@ -3,6 +3,7 @@ import { SortableContainer } from "react-sortable-hoc";
 import DraggableColorBox from "./DraggableColorBox";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles/DraggableColorList";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const DraggableColorList = SortableContainer(
   ({ colors, handleDelete, classes }) => {

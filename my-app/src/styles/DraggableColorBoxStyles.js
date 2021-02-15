@@ -1,5 +1,5 @@
 import chroma from "chroma-js";
-
+import sizes from "./sizes";
 export default {
   root: {
     display: "inline-block",
@@ -16,6 +16,14 @@ export default {
       letterSpacing: "1px",
       color: (props) =>
         chroma(props.color).luminance() <= 0.3 ? "#ccc" : "#2a303a",
+    },
+    [sizes.down("lg")]: {
+      width: "50%",
+      height: "10%",
+    },
+    [sizes.down("md")]: {
+      width: "100%",
+      height: "5%",
     },
   },
   icon: {

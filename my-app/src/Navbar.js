@@ -9,6 +9,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles/navbarStyles";
 import { Link } from "react-router-dom";
+import MenuIcon from "@material-ui/icons/Menu";
 
 class Navbar extends Component {
   state = { format: "hex", open: false };
@@ -28,6 +29,7 @@ class Navbar extends Component {
         <nav className={classes.root}>
           <Link to="/">
             <h3>colorpicker</h3>
+            {/* <MenuIcon style={{ fontSize: "3rem", color: "#2a303a" }} /> */}
           </Link>
           <p>Level: {this.props.scale}</p>
           <Slider

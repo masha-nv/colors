@@ -16,7 +16,8 @@ class App extends Component {
       window.localStorage.setItem("palettes", JSON.stringify(seedColors)),
   };
 
-  handleDeletePalette = (palette) => {
+  handleDeletePalette = (e, palette) => {
+    e.preventDefault();
     const updatedPalettes = this.state.palettes.filter(
       (p) => p.paletteName !== palette.paletteName
     );

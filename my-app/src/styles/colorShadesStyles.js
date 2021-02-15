@@ -3,6 +3,6 @@ export default {
     height: "100vh",
   },
   colorBoxes: {
-    height: "90%",
+    height: "100%",
   },
 };
