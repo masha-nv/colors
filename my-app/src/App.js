@@ -4,10 +4,10 @@ import seedColors from "./seedColors";
 import generatePalette from "./colorHelpers";
 import { Route, Switch } from "react-router-dom";
 import PaletteList from "./PaletteList";
-import "./App.css";
 import ColorShades from "./ColorShades";
 import NewPaletteForm from "./NewPaletteForm";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import Page from "./Page";
 
 class App extends Component {
   savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
@@ -61,41 +61,41 @@ class App extends Component {
                   exact
                   path="/palette/new"
                   render={(routeProps) => (
-                    <div className="page">
+                    <Page>
                       <NewPaletteForm {...routeProps} palettes={palettes} />
-                    </div>
+                    </Page>
                   )}
                 />
                 <Route
                   exact
                   path="/"
                   render={(routeProps) => (
-                    <div className="page">
+                    <Page>
                       <PaletteList
                         {...routeProps}
                         palettes={this.makePalettes()}
                         deletePalette={this.handleDeletePalette}
                       />
-                    </div>
+                    </Page>
                   )}
                 />
                 <Route
                   exact
                   path="/palette/:id"
                   render={(routeProps) => (
-                    <div className="page">
+                    <Page>
                       <Palette
                         {...routeProps}
                         palette={this.findPalette(routeProps.match.params.id)}
                       />
-                    </div>
+                    </Page>
                   )}
                 />
                 <Route
                   exact
                   path="/palette/:id/:colorName"
                   render={(routeProps) => (
-                    <div className="page">
+                    <Page>
                       <ColorShades
                         {...routeProps}
                         shades={this.getShades(
@@ -106,7 +106,7 @@ class App extends Component {
                           this.findPalette(routeProps.match.params.id)
                         )}
                       />
-                    </div>
+                    </Page>
                   )}
                 />
               </Switch>
