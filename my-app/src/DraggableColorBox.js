@@ -3,7 +3,6 @@ import { withStyles } from "@material-ui/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { SortableElement } from "react-sortable-hoc";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-
 import styles from "./styles/DraggableColorBoxStyles";
 
 const DraggableColorBox = ({ classes, color, name, handleDelete }) => {

@@ -16,11 +16,10 @@ class App extends Component {
       window.localStorage.setItem("palettes", JSON.stringify(seedColors)),
   };
 
-  handleDeletePalette = (e, palette) => {
-    e.preventDefault();
-    const updatedPalettes = this.state.palettes.filter(
-      (p) => p.paletteName !== palette.paletteName
-    );
+  handleDeletePalette = (id) => {
+    console.log("deleting", id);
+    // e.preventDefault();
+    const updatedPalettes = this.state.palettes.filter((p) => p.id !== id);
     window.localStorage.setItem("palettes", JSON.stringify(updatedPalettes));
     this.setState({ palettes: updatedPalettes });
   };

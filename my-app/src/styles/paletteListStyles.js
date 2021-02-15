@@ -1,7 +1,9 @@
 import sizes from "./sizes";
+import { red, blue } from "@material-ui/core/colors";
 
 export default {
   "@global": {
+    ".fade-exit": { opacity: "1" },
     ".fade-exit-active": {
       opacity: "0",
       transition: "opacity .5s ease-in-out",
@@ -52,5 +54,13 @@ export default {
       paddingLeft: "15px",
       alignSelf: "center",
     },
+  },
+  avatarCheck: {
+    backgroundColor: red[100],
+    color: red[600],
+  },
+  avatarClose: {
+    backgroundColor: blue[100],
+    color: blue[600],
   },
 };
